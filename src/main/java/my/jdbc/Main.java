@@ -10,9 +10,10 @@ public class Main {
 	public static void main(String args []) throws SQLException {
 
 		
-		Employee e1 = new Employee(7,"pksharma67@gmail.com","Mohit Sharma",50000);
+		Employee e1 = new Employee(6,"pksharma67@gmail.com","Mohit Singh",50000);
 		EmployeeDaoImpl empDao = new EmployeeDaoImpl();
-		empDao.saveEmployee(e1);		
+			
+		empDao.updateEmployee(e1);
 
 	}
 

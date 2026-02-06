@@ -16,11 +16,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","Pintu@6728");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	
+	public static final String UPDATE_QUERY = "update student set name = '%s' where id = %d";
+	
 	@Override
 	public void saveEmployee(Employee e) throws SQLException {
 		Statement statement = connection.createStatement();
@@ -30,10 +32,14 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public void updateEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void updateEmployee(Employee e) {
+    	
+    	try(Statement statement = connection.createStatement()){
+    		statement.executeUpdate(String.format(UPDATE_QUERY,e.getName(),e.getId()));
+    	}catch(SQLException c) {
+    		c.printStackTrace();
+    	}
+    }
 
 	@Override
 	public void deleteAnEmployee(int id) {
